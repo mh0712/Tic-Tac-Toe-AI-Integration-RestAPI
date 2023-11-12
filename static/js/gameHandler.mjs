@@ -1,7 +1,7 @@
 
 
-function makeMove(move, cells) {
-    fetch('/make_move', {
+function makeMove(move, cells, difficulty) {
+    fetch(`/make_move/${difficulty}`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -17,8 +17,8 @@ function makeMove(move, cells) {
     });
 }
 
-function resetGame(starting_player, cells) {
-    fetch(`/reset_game/${starting_player}`, {
+function resetGame(starting_player, cells, difficulty) {
+    fetch(`/reset_game/${starting_player}/${difficulty}`, {
         method: 'POST',
     })
     .then(response => response.json())

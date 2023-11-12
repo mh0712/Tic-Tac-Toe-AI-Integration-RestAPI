@@ -1,17 +1,32 @@
+:root {
+  --pink-color: #ff2e63;
+  --bg-color: #252a34;
+  --border-color: #000;
+  --text-color: white;
+  --mode-color: rgb(245, 149, 5);
+  --hover-color: #08d9d6;
+}
+
 * {
-  color: white;
+  color: var(--text-color);
   font-family: sans-serif;
   transition: 0.2s ease-in-out;
   user-select: none;
 }
 
 body {
-  background-color: #252a34;
+  background-color: var(--bg-color);
   margin: 0;
   padding: 0;
   width: 100vw;
   text-align: center;
   padding-top: 5vh;
+}
+
+h1 {
+  font-size: 50px;
+  margin-bottom: 35px;
+  color: var(--mode-color);
 }
 
 .turn-container {
@@ -36,10 +51,11 @@ body {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr;
+  cursor: pointer;
 }
 
 .turn-box {
-  border: 4px solid #000;
+  border: 4px solid var(--border-color);
   font-size: 1.6rem;
   font-weight: 700;
 }
@@ -49,7 +65,7 @@ body {
 }
 
 .turn-background {
-  background-color: #ff2e63;
+  background-color: var(--pink-color);
 }
 
 .bg {
@@ -58,13 +74,8 @@ body {
   left: 0;
   width: 85px;
   height: 40px;
-  /* background-color: #ff2e63; */
+  /* background-color: var(--pink-color); */
   z-index: -1;
-}
-
-h1 {
-  font-size: 24px;
-  margin-bottom: 20px;
 }
 
 .board {
@@ -74,23 +85,23 @@ h1 {
   height: 275px;
   width: 275px;
   margin: 30px auto;
-  border: 2.5px solid #000;
+  border: 2.5px solid var(--border-color);
 }
 
 .cell {
   cursor: pointer;
   font-size: 4rem;
   font-weight: 500;
-  border: 2.5px solid #000;
+  border: 2.5px solid var(--border-color);
 }
 
 .cell:hover {
-  background-color: #ff2e63;
+  background-color: var(--pink-color);
 }
 
 /* Style the reset button */
 #play-again {
-  background-color: #ff2e63;
+  background-color: var(--pink-color);
   padding: 10px 25px;
   border: none;
   font-size: 1.2rem;
@@ -100,10 +111,33 @@ h1 {
 
 #play-again:hover {
   padding: 10px 40px;
-  background-color: #08d9d6;
+  background-color: var(--hover-color);
   color: #000;
 }
 
 .winning-cells {
-  background-color: #08d9d6;
+  background-color: var(--hover-color);
+}
+
+/* Modes buttons */
+.mode {
+  display: flex;
+  justify-content: center;
+}
+
+.mode button {
+  color: var(--mode-color);
+  background-color: transparent;
+  padding: 10px 25px;
+  border: none;
+  font-size: 1.2rem;
+  border-radius: 5px;
+  margin: 2%;
+  margin-top: 6%;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out; 
+}
+
+.mode button:hover {
+  color: var(--text-color);
 }
