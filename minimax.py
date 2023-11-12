@@ -21,9 +21,9 @@ def is_winner(board, player):
     for line in lines:
         a, b, c = line
         if board[a] == player and board[b] == player and board[c] == player:
-            return True
+            return (True, line)
 
-    return False
+    return (False, None)
 
 
 def make_ai_move(board):
@@ -44,9 +44,9 @@ def make_ai_move(board):
     return best_move
 
 def minimax(board, is_maximizing, alpha, beta):
-    if is_winner(board, AI_PLAYER):
+    if is_winner(board, AI_PLAYER)[0]:
         return 1
-    if is_winner(board, HUMAN_PLAYER):
+    if is_winner(board, HUMAN_PLAYER)[0]:
         return -1
     if is_board_full(board):
         return 0
@@ -81,7 +81,9 @@ def minimizing(board, alpha, beta):
     return best_score
 
 
-
+##################################################################
+# Routes
+##################################################################
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -92,20 +94,33 @@ def make_move():
     human_move = data['move'] # i
 
     # Check the status of the game after human move
-    if board[human_move] == ' ' and not is_winner(board, HUMAN_PLAYER) and not is_winner(board, AI_PLAYER) and not is_board_full(board): 
+    if (board[human_move] == ' ' and not is_winner(board, HUMAN_PLAYER)[0] and
+        not is_winner(board, AI_PLAYER)[0] and not is_board_full(board)):    
+
         board[human_move] = HUMAN_PLAYER
+
         # Check if the human wins after the move or if the board is full
-        if not is_winner(board, HUMAN_PLAYER) and not is_board_full(board):
+        if not is_winner(board, HUMAN_PLAYER)[0] and not is_board_full(board):
             ai_move = make_ai_move(board)
             board[ai_move] = AI_PLAYER
 
-    return jsonify({'board': board}), 201
+    if is_winner(board, HUMAN_PLAYER)[0]:
+        return jsonify({'board': board, 'winningIndexes': is_winner(board, HUMAN_PLAYER)[1]}), 201
 
-# Route to reset the game
-@app.route('/reset_game', methods=['POST'])
-def reset_game():
+    if is_winner(board, AI_PLAYER)[0]:
+        return jsonify({'board': board, 'winningIndexes': is_winner(board, AI_PLAYER)[1]}), 201
+
+    # Return is_winner of the AI or Human it doesn't matter in both ways it will be None
+    return jsonify({'board': board, 'winningIndexes': is_winner(board, AI_PLAYER)[1]}), 201 
+    # return jsonify({'board': board}), 201
+
+@app.route('/reset_game/<starting_player>', methods=['POST'])
+def reset_game(starting_player):
     global board
     board = [' ' for _ in range(9)]
+    if starting_player == "AI":
+        ai_move = make_ai_move(board)
+        board[ai_move] = AI_PLAYER
     return jsonify({'message': 'Game reset', 'board': board})
 
 # Run the flask app
