@@ -1,0 +1,7 @@
+2023.11.05 17:45:20 INFO  Started: Metals version 1.1.0 in folders 'E:\marc\AI-Projects\tic-tac-toe-ai-RestAPI-python' for client Visual Studio Code 1.84.0.
+2023.11.05 17:45:22 WARN  no build target for: C:\Users\User\Dropbox\PC (2)\Downloads\Factorisation.scala
+2023.11.05 17:45:22 WARN  Build server is not auto-connectable.
+2023.11.05 17:45:22 WARN  no build tool detected in workspace 'E:\marc\AI-Projects\tic-tac-toe-ai-RestAPI-python'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. 
+2023.11.05 17:45:22 WARN  no build target for: C:\Users\User\Dropbox\PC (2)\Downloads\Factorisation.scala
+2023.11.05 17:45:23 INFO  Shutting down server
+2023.11.05 17:45:23 INFO  shutting down Metals
