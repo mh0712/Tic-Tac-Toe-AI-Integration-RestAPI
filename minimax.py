@@ -28,12 +28,12 @@ def is_winner(board, player):
     return (False, None)
 
 def make_ai_move(board, difficulty):
-    if difficulty == 'easy':
-        return make_random_move(board)
-    elif difficulty == 'medium':
+    if difficulty == 'medium':
         return make_depth_limited_move(board, depth=1)
     elif difficulty == 'hard':
         return make_minimax_move(board)
+    else:
+        return make_random_move(board)
 
 ##################################################################
 # Easy Level:      |        Random       | 
@@ -191,7 +191,6 @@ def make_move(difficulty):
 
     # Return is_winner of the AI or Human it doesn't matter in both ways it will be None
     return jsonify({'board': board, 'winningIndexes': is_winner(board, AI_PLAYER)[1]}), 201 
-    # return jsonify({'board': board}), 201
 
 @app.route('/reset_game/<starting_player>/<difficulty>', methods=['POST'])
 def reset_game(starting_player, difficulty):

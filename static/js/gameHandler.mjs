@@ -1,5 +1,3 @@
-
-
 function makeMove(move, cells, difficulty) {
     fetch(`/make_move/${difficulty}`, {
         method: 'POST',
@@ -23,7 +21,6 @@ function resetGame(starting_player, cells, difficulty) {
     })
     .then(response => response.json())
     .then(data => {
-        console.log(data.message)
         updateBoard(data, cells);
     })
     .catch(error => {

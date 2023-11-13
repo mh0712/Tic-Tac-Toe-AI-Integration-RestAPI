@@ -3,16 +3,17 @@ import { toggleTurn } from './turnHandler.mjs';
 
 document.addEventListener('DOMContentLoaded', () => {
     let turn = "Human"
-    let selectedMode = 'Easy';
+    let selectedMode = "Easy";
     const cells = document.querySelectorAll('.cell');
     const resetButton = document.getElementById('play-again');
     const pickPlayerTurn = document.getElementById('pick_player');
     const modes = document.querySelectorAll('.mode_button');
     const header = document.getElementById('titleMode');
-     
+    
     cells.forEach(cell => {
         cell.addEventListener('click', () => {
             makeMove(cell.id, cells, selectedMode);
+            console.log(selectedMode)
         });
     });
     
